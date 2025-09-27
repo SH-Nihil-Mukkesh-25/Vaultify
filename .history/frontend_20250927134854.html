@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vaultify Dashboard</title>
+<style>
+body { font-family: Arial; background:#f0f0f0; padding:20px; }
+h1 { text-align:center; }
+.dashboard { max-width:600px; margin:auto; background:white; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.2);}
+#door-status { font-size:20px; margin-bottom:10px; }
+#logs { max-height:200px; overflow:auto; background:#eee; padding:10px; border-radius:5px; margin-bottom:10px;}
+#ai-summary { background:#ddd; padding:10px; border-radius:5px; margin-bottom:10px;}
+input, button { padding:10px; font-size:16px; margin-top:5px; width:100%; border-radius:5px; border:1px solid #ccc; }
+</style>
+</head>
+<body>
+<div class="dashboard">
+<h1>Vaultify Security Dashboard</h1>
+
+<div id="door-status">🔒 Door Status Unknown</div>
+
+<h3>Event Logs</h3>
+<div id="logs"></div>
+
+<h3>AI Summary</h3>
+<div id="ai-summary">Loading summary...</div>
+
+<h3>Ask AI</h3>
+<input type="text" id="user-question" placeholder="Ask about security events"/>
+<button onclick="askAI()">Ask AI</button>
+<div id="ai-answer"></div>
+</div>
+
+<script>
+async function fetchLogs(){
+    try {
+        const res = await fetch("/api/logs");
+        const data = await res.json();
+        const logsDiv = document.getElementById("logs");
+        logsDiv.innerHTML = "";
+        data.forEach(l=>{
+            logsDiv.innerHTML += `<div>${l}</div>`;
+        });
+    } catch(e){
+        console.error(e);
+    }
+}
+
+async function fetchSummary(){
+    try {
+        const res = await fetch("/api/summary");
+        const data = await res.json();
+        document.getElementById("ai-summary").innerText = data.summary;
+    } catch(e){
+        console.error(e);
+    }
+}
+
+async function askAI(){
+    const q = document.getElementById("user-question").value;
+    if(!q) return;
+    try{
+        const res = await fetch(`/api/ask?q=${encodeURIComponent(q)}`);
+        const data = await res.json();
+        document.getElementById("ai-answer").innerText = data.answer;
+    } catch(e){
+        console.error(e);
+    }
+}
+
+// Refresh every 5 seconds
+setInterval(fetchLogs,5000);
+setInterval(fetchSummary,15000);
+fetchLogs();
+fetchSummary();
+</script>
+</body>
+</html>
