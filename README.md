@@ -491,10 +491,10 @@ The system automatically:
 
 | Contributor | Role |
 |-------------|------|
-| [SH Nihil Mukkesh](https://github.com/SH-Nihil-Mukkesh-25) | Lead Developer & AI Integration |
+| [SH Nihil Mukkesh](https://github.com/SH-Nihil-Mukkesh-25) | Hardware & AI Integration |
 | [Dakshin Raj P](https://github.com/Dakshin10) | Hardware & Firmware |
-| [Pravin Aditya] | Backend Development |
-| [Sharvesh C] | Frontend & UI/UX |
+| [Pravin Aditya] | Circuit Connections |
+| [Sharvesh C] | Circuit Connections |
 
 ---
 
