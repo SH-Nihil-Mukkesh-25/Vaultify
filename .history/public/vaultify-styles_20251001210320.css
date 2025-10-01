@@ -1,0 +1,205 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Courier New', monospace;
+  padding: 40px 20px;
+  background: #0a0a0a;
+  color: #e0e0e0;
+  min-height: 100vh;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 0, 0, 0.03) 2px,
+      rgba(255, 0, 0, 0.03) 4px
+    );
+}
+
+h1 {
+  color: #ff0000;
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+  border-bottom: 2px solid #330000;
+  padding-bottom: 15px;
+}
+
+h2 {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  color: #ff4444;
+  font-size: 1.8em;
+  text-shadow: 0 0 8px rgba(255, 0, 0, 0.3);
+}
+
+h3 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: #cc0000;
+  font-size: 1.3em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-left: 4px solid #ff0000;
+  padding-left: 12px;
+}
+
+#logs {
+  max-height: 350px;
+  overflow-y: auto;
+  background: #1a1a1a;
+  border: 1px solid #330000;
+  padding: 15px;
+  box-shadow: inset 0 0 20px rgba(255, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+#logs::-webkit-scrollbar {
+  width: 8px;
+}
+
+#logs::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+#logs::-webkit-scrollbar-thumb {
+  background: #ff0000;
+  border-radius: 4px;
+}
+
+#logs::-webkit-scrollbar-thumb:hover {
+  background: #cc0000;
+}
+
+.log {
+  padding: 10px;
+  border-bottom: 1px solid #2a0000;
+  font-size: 0.95em;
+  transition: background 0.2s;
+}
+
+.log:hover {
+  background: #220000;
+}
+
+.log:last-child {
+  border-bottom: none;
+}
+
+.motion_alert {
+  color: #ff0000;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+.door_unlocked {
+  color: #00ff88;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
+}
+
+.door_autolock {
+  color: #ffaa00;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(255, 170, 0, 0.3);
+}
+
+.rfid_invalid {
+  color: #ff3333;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(255, 51, 51, 0.5);
+}
+
+#ai-summary,
+#ai-answer {
+  background: #1a1a1a;
+  padding: 15px;
+  border: 1px solid #330000;
+  min-height: 60px;
+  line-height: 1.6;
+  box-shadow: inset 0 0 15px rgba(255, 0, 0, 0.05);
+  border-radius: 4px;
+  color: #d0d0d0;
+}
+
+input {
+  padding: 10px 15px;
+  width: 300px;
+  background: #1a1a1a;
+  border: 1px solid #440000;
+  color: #e0e0e0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95em;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #ff0000;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+input::placeholder {
+  color: #666;
+}
+
+button {
+  padding: 10px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  background: #ff0000;
+  color: #fff;
+  border: none;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  transition: all 0.3s;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+button:hover {
+  background: #cc0000;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+#door-status {
+  background: #1a1a1a;
+  padding: 20px;
+  border-left: 5px solid #ff0000;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 20px 10px;
+  }
+  
+  h1 {
+    font-size: 1.8em;
+  }
+  
+  input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    margin-left: 0;
+    width: 100%;
+  }
+}
