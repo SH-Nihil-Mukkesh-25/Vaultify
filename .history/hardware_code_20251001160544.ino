@@ -221,20 +221,12 @@ void setup(){
 }
 
 // -------------------- LOOP --------------------
-unsigned long lastLcdUpdate = 0;
-const long LCD_UPDATE_INTERVAL = 1000; // Update every 1 second
-
 void loop(){
   handleMotionSensor();
   handleRfidReader();
   handleAlarmState();
   handleDoorState();
-  
-  // Only update LCD every second
-  if(millis() - lastLcdUpdate > LCD_UPDATE_INTERVAL){
-    updateLcdDisplay();
-    lastLcdUpdate = millis();
-  }
+  updateLcdDisplay();
 }
 
 // old v1 code 👇

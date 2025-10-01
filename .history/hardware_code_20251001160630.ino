@@ -236,7 +236,6 @@ void loop(){
     lastLcdUpdate = millis();
   }
 }
-
 // old v1 code 👇
 
 // #include <Arduino.h>

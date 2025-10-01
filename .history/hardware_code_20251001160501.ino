@@ -90,27 +90,16 @@ void sendSms(String msg){
 
 // -------------------- BACKEND LOGGING --------------------
 void sendToBackend(String eventType, String detail){
-  if(WiFi.status() != WL_CONNECTED){
-    Serial.println("WiFi not connected, skipping backend log");
-    return;
-  }
+  if(WiFi.status() != WL_CONNECTED) return;
   HTTPClient http;
-  http.begin(BACKEND_URL + "/api/logs");
+  http.begin(BACKEND_URL + "/api/logs");  // ✅ Add the endpoint!
   http.addHeader("Content-Type","application/json");
   String payload = "{\"event\":\""+eventType+"\",\"detail\":\""+detail+"\"}";
-  http.setTimeout(5000); // 5 second timeout
   int httpCode = http.POST(payload);
-  
-  if(httpCode > 0){
-    Serial.printf("Backend responded: %d\n", httpCode);
-    if(httpCode == 200){
-      Serial.println("Log sent successfully");
-    }
-  } else {
-    Serial.printf("Backend request failed: %s\n", http.errorToString(httpCode).c_str());
-  }
+  Serial.print("Backend response: "); Serial.println(httpCode);
   http.end();
 }
+
 // -------------------- LCD --------------------
 void updateLcdDisplay(){
   lcd.clear();
@@ -221,20 +210,12 @@ void setup(){
 }
 
 // -------------------- LOOP --------------------
-unsigned long lastLcdUpdate = 0;
-const long LCD_UPDATE_INTERVAL = 1000; // Update every 1 second
-
 void loop(){
   handleMotionSensor();
   handleRfidReader();
   handleAlarmState();
   handleDoorState();
-  
-  // Only update LCD every second
-  if(millis() - lastLcdUpdate > LCD_UPDATE_INTERVAL){
-    updateLcdDisplay();
-    lastLcdUpdate = millis();
-  }
+  updateLcdDisplay();
 }
 
 // old v1 code 👇
