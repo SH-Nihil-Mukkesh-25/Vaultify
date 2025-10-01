@@ -4,6 +4,7 @@ import random
 
 url = "https://vaultify-6rbk.onrender.com/api/logs"
 
+
 events = [
     {"event": "door_unlocked", "detail": "RFID authorized"},
     {"event": "motion_alert", "detail": "Simulated intrusion"},
