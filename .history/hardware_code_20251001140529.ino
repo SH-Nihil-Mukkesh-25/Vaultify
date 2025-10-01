@@ -217,6 +217,8 @@ void loop(){
   updateLcdDisplay();
 }
 
+
+
 // old v1 code 👇
 
 // #include <Arduino.h>

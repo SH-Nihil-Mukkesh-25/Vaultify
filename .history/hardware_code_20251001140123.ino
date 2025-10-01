@@ -9,8 +9,6 @@
 #include <HTTPClient.h>
 #include <base64.h>
 
-#include "secrets.h"  // <-- Include secrets here
-
 // -------------------- PIN ASSIGNMENTS --------------------
 #define BUZZER_PIN 25
 #define SERVO_PIN 26
@@ -25,6 +23,19 @@
 #define ACCEL_THRESHOLD 0.6
 #define DOOR_AUTO_CLOSE 120000
 #define ALARM_DURATION 120000
+
+// -------------------- WIFI --------------------
+const char* ssid = "YOUR_WIFI_SSID";
+const char* password = "YOUR_WIFI_PASS";
+
+// -------------------- TWILIO --------------------
+const String TWILIO_ACCOUNT_SID = "YOUR_TWILIO_SID";
+const String TWILIO_AUTH_TOKEN  = "YOUR_TWILIO_TOKEN";
+const String DEST_PHONE = "+91XXXXXXXXXX";
+const String TWILIO_FROM_NUMBER = "+1XXXXXXXXXX";
+
+// -------------------- BACKEND --------------------
+const String BACKEND_URL = "http://YOUR_SERVER_IP:8000/api/logs"; // ESP32 -> backend
 
 // -------------------- OBJECTS --------------------
 LiquidCrystal_I2C lcd(0x27,16,2);
@@ -195,7 +206,7 @@ void setup(){
   lcd.init(); lcd.backlight(); lcd.setCursor(0,0); lcd.print("System Booting...");
   delay(1500);
 
-  WiFi.begin(WIFI_SSID,WIFI_PASS); lcd.setCursor(0,1); lcd.print("Connecting Wi-Fi...");
+  WiFi.begin(ssid,password); lcd.setCursor(0,1); lcd.print("Connecting Wi-Fi...");
   while(WiFi.status()!=WL_CONNECTED){ delay(500); Serial.print("."); }
   lcd.setCursor(0,1); lcd.print("Wi-Fi Connected   ");
 
@@ -216,6 +227,7 @@ void loop(){
   handleDoorState();
   updateLcdDisplay();
 }
+
 
 // old v1 code 👇
 

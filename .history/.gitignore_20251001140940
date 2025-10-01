@@ -150,7 +150,7 @@ build/
 *.bin
 *.hex
 *.map
-secrets.h
+secrets
 # ESP32 specific
 .pio/
 .vscode/

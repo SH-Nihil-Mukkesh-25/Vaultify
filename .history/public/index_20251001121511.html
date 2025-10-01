@@ -39,7 +39,6 @@
   <div id="ai-answer">No answer yet.</div>
 
   <script>
-    const BACKEND_URL = "https://vaultify-6rbk.onrender.com";
     const logsDiv = document.getElementById("logs");
     const summaryDiv = document.getElementById("ai-summary");
     const doorStatusDiv = document.getElementById("door-status");
@@ -47,7 +46,7 @@
 
     async function fetchLogs() {
       try {
-        const res = await fetch(`${BACKEND_URL}/api/logs`);
+        const res = await fetch("https://YOUR_ACTUAL_RAILWAY_URL.up.railway.app/api/logs");
         const data = await res.json();
         if (!data.logs || data.logs.length === 0) {
           logsDiv.innerHTML = "No logs available yet.";
@@ -73,7 +72,7 @@
 
     async function fetchSummary() {
       try {
-        const res = await fetch(`${BACKEND_URL}/api/summary`);
+        const res = await fetch("https://YOUR_ACTUAL_RAILWAY_URL.up.railway.app/api/summary");
         const data = await res.json();
         summaryDiv.innerText = data.summary || "No summary available yet.";
       } catch (err) {
@@ -86,7 +85,7 @@
       const question = document.getElementById("ai-question").value;
       if (!question) return;
       try {
-        const res = await fetch(`${BACKEND_URL}/api/ask?question=${encodeURIComponent(question)}`);
+        const res = await fetch(`https://YOUR_ACTUAL_RAILWAY_URL.up.railway.app/api/ask?question=${encodeURIComponent(question)}`);
         const data = await res.json();
         aiAnswerDiv.innerText = data.answer || "No answer yet.";
       } catch (err) {
