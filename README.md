@@ -493,8 +493,8 @@ The system automatically:
 |-------------|------|
 | [SH Nihil Mukkesh](https://github.com/SH-Nihil-Mukkesh-25) | Hardware , AI Integration & Deployment |
 | [Dakshin Raj P](https://github.com/Dakshin10) | Hardware , Firmware & Testing |
-| [Pravin Aditya] | Circuit Connections & Simulation |
-| [Sharvesh C] | Circuit Connections & Simulation |
+| [Prawin Aadhithya AM](https://github.com/Prawin443) | Circuit Connections & Simulation |
+| [Sharvesh C](https://github.com/SharveshC) | Circuit Connections & Simulation |
 
 ---
 
