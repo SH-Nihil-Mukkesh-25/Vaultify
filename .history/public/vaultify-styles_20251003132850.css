@@ -1,0 +1,187 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  padding: 40px 20px;
+  background: #f4f1e8;
+  color: #2a2520;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+h1 {
+  color: #1a1410;
+  font-size: 2.2em;
+  margin-bottom: 30px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #d4cfc4;
+  padding-bottom: 15px;
+}
+
+h2 {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  color: #3a3530;
+  font-size: 1.6em;
+  font-weight: 500;
+}
+
+h3 {
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: #4a4540;
+  font-size: 1.1em;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+#logs {
+  max-height: 350px;
+  overflow-y: auto;
+  background: #fefdfb;
+  border: 1px solid #d4cfc4;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+#logs::-webkit-scrollbar {
+  width: 6px;
+}
+
+#logs::-webkit-scrollbar-track {
+  background: #f4f1e8;
+}
+
+#logs::-webkit-scrollbar-thumb {
+  background: #9a9288;
+  border-radius: 3px;
+}
+
+#logs::-webkit-scrollbar-thumb:hover {
+  background: #7a7268;
+}
+
+.log {
+  padding: 12px 0;
+  border-bottom: 1px solid #ebe8df;
+  font-size: 0.95em;
+  color: #4a4540;
+}
+
+.log:hover {
+  background: #faf8f3;
+}
+
+.log:last-child {
+  border-bottom: none;
+}
+
+.log strong {
+  font-weight: 600;
+  color: #2a2520;
+}
+
+.motion_alert {
+  color: #8b3a3a;
+  font-weight: 600;
+}
+
+.door_unlocked {
+  color: #2d5f4f;
+  font-weight: 600;
+}
+
+.door_autolock {
+  color: #8b6914;
+  font-weight: 600;
+}
+
+.rfid_invalid {
+  color: #943838;
+  font-weight: 600;
+}
+
+#ai-summary,
+#ai-answer {
+  background: #fefdfb;
+  padding: 20px;
+  border: 1px solid #d4cfc4;
+  min-height: 60px;
+  line-height: 1.7;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  color: #4a4540;
+}
+
+input {
+  padding: 12px 16px;
+  width: 300px;
+  background: #fefdfb;
+  border: 1px solid #c4bfb4;
+  color: #2a2520;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: 0.95em;
+  transition: all 0.2s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #8a8278;
+  box-shadow: 0 0 0 3px rgba(138, 130, 120, 0.1);
+}
+
+input::placeholder {
+  color: #9a9288;
+}
+
+button {
+  padding: 12px 24px;
+  margin-left: 10px;
+  cursor: pointer;
+  background: #3a3530;
+  color: #f4f1e8;
+  border: none;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-weight: 500;
+  font-size: 0.95em;
+  transition: all 0.2s;
+}
+
+button:hover {
+  background: #2a2520;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+#door-status {
+  background: #fefdfb;
+  padding: 20px;
+  border-left: 3px solid #6a6258;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 20px 10px;
+  }
+  
+  h1 {
+    font-size: 1.8em;
+  }
+  
+  input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    margin-left: 0;
+    width: 100%;
+  }
+}
