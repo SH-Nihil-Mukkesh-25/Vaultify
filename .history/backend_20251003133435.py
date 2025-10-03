@@ -177,6 +177,7 @@ def health():
 
 # ----------------- RUN SERVER -----------------
 if __name__ == "__main__":
+
     import uvicorn
     print("🚀 Starting Vaultify Security Dashboard Backend...")
     print("📊 Dashboard will be available at: http://localhost:8000")
