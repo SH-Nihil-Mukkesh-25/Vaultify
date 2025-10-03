@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Vaultify Security Dashboard</title>
+  <link rel="stylesheet" href="vaultify-styles.css">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -47,26 +48,23 @@
 
     async function fetchLogs() {
       try {
-        const res = await fetch(`${BACKEND_URL}/logs`);
+        const res = await fetch(${BACKEND_URL}/api/logs);
         const data = await res.json();
-        
-        if (!data || data.length === 0) {
+        if (!data.logs || data.logs.length === 0) {
           logsDiv.innerHTML = "No logs available yet.";
           doorStatusDiv.innerText = "🔒 Door Status Unknown";
           return;
         }
 
         // Display logs
-        logsDiv.innerHTML = data.slice().reverse().map(log => {
-          let cls = log.event_type ? log.event_type.replace(/\s+/g, "_") : "default";
-          return `<div class="log ${cls}"><strong>${log.event_type || 'EVENT'}</strong>: ${log.message || log.detail || 'No details'}</div>`;
+        logsDiv.innerHTML = data.logs.slice().reverse().map(log => {
+          let cls = log.event.replace(/\s+/g, "_");
+          return <div class="log ${cls}"><strong>${log.event}</strong>: ${log.detail}</div>;
         }).join("");
 
         // Update door status
-        const lastDoorEvent = data.slice().reverse().find(e => 
-          e.event_type && e.event_type.includes("door")
-        );
-        doorStatusDiv.innerText = lastDoorEvent ? `🔑 ${lastDoorEvent.message}` : "🔒 Door Status Unknown";
+        const lastDoorEvent = data.logs.slice().reverse().find(e => e.event.includes("door"));
+        doorStatusDiv.innerText = lastDoorEvent ? 🔑 ${lastDoorEvent.detail} : "🔒 Door Status Unknown";
 
       } catch (err) {
         console.error(err);
@@ -76,7 +74,7 @@
 
     async function fetchSummary() {
       try {
-        const res = await fetch(`${BACKEND_URL}/summary`);
+        const res = await fetch(${BACKEND_URL}/api/summary);
         const data = await res.json();
         summaryDiv.innerText = data.summary || "No summary available yet.";
       } catch (err) {
@@ -89,11 +87,7 @@
       const question = document.getElementById("ai-question").value;
       if (!question) return;
       try {
-        const res = await fetch(`${BACKEND_URL}/ask`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ question: question })
-        });
+        const res = await fetch(${BACKEND_URL}/api/ask?question=${encodeURIComponent(question)});
         const data = await res.json();
         aiAnswerDiv.innerText = data.answer || "No answer yet.";
       } catch (err) {
