@@ -24,7 +24,7 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://vaultify-ydgu-git-master-mukkeshnihil-gmailcoms-projects.vercel.app/",
+        "vaultify-ydgu-git-master-mukkeshnihil-gmailcoms-projects.vercel.app",
         "*"  # Allow all origins for IoT devices, or restrict as needed
     ],
     allow_credentials=True,
