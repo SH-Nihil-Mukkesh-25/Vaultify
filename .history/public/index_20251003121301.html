@@ -1,0 +1,110 @@
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vaultify Security Dashboard</title>
+  <link rel="stylesheet" href="vaultify-styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+      color: #333;
+    }
+    h1 { color: #222; }
+    h2, h3 { margin-top: 20px; }
+    #logs { max-height: 300px; overflow-y: auto; background: #fff; border: 1px solid #ccc; padding: 10px; }
+    .log { padding: 5px; border-bottom: 1px solid #eee; }
+    .motion_alert { color: red; font-weight: bold; }
+    .door_unlocked { color: green; font-weight: bold; }
+    .door_autolock { color: orange; font-weight: bold; }
+    .rfid_invalid { color: darkred; font-weight: bold; }
+    #ai-summary, #ai-answer { background: #fff; padding: 10px; border: 1px solid #ccc; min-height: 40px; }
+    input { padding: 5px; width: 250px; }
+    button { padding: 6px 10px; margin-left: 5px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Vaultify Security Dashboard</h1>
+  <h2 id="door-status">🔒 Door Status Unknown</h2>
+
+  <h3>Event Logs</h3>
+  <div id="logs">Loading logs...</div>
+
+  <h3>AI Summary</h3>
+  <div id="ai-summary">Loading summary...</div>
+
+  <h3>Ask AI</h3>
+  <input type="text" id="ai-question" placeholder="Ask about security events"/>
+  <button onclick="askAI()">Ask AI</button>
+  <div id="ai-answer">No answer yet.</div>
+
+  <script>
+    const BACKEND_URL = "https://vaultify-6rbk.onrender.com";
+    const logsDiv = document.getElementById("logs");
+    const summaryDiv = document.getElementById("ai-summary");
+    const doorStatusDiv = document.getElementById("door-status");
+    const aiAnswerDiv = document.getElementById("ai-answer");
+
+    async function fetchLogs() {
+      try {
+        const res = await fetch(`${BACKEND_URL}/api/logs`);
+        const data = await res.json();
+        if (!data.logs || data.logs.length === 0) {
+          logsDiv.innerHTML = "No logs available yet.";
+          doorStatusDiv.innerText = "🔒 Door Status Unknown";
+          return;
+        }
+
+        // Display logs
+        logsDiv.innerHTML = data.logs.slice().reverse().map(log => {
+          let cls = log.event.replace(/\s+/g, "_");
+          return `<div class="log ${cls}"><strong>${log.event}</strong>: ${log.detail}</div>`;
+        }).join("");
+
+        // Update door status
+        const lastDoorEvent = data.logs.slice().reverse().find(e => e.event.includes("door"));
+        doorStatusDiv.innerText = lastDoorEvent ? `🔑 ${lastDoorEvent.detail}` : "🔒 Door Status Unknown";
+
+      } catch (err) {
+        console.error(err);
+        logsDiv.innerHTML = "Error fetching logs.";
+      }
+    }
+
+    async function fetchSummary() {
+      try {
+        const res = await fetch(`${BACKEND_URL}/api/summary`);
+        const data = await res.json();
+        summaryDiv.innerText = data.summary || "No summary available yet.";
+      } catch (err) {
+        console.error(err);
+        summaryDiv.innerText = "Error fetching summary.";
+      }
+    }
+
+    async function askAI() {
+      const question = document.getElementById("ai-question").value;
+      if (!question) return;
+      try {
+        const res = await fetch(`${BACKEND_URL}/api/ask?question=${encodeURIComponent(question)}`);
+        const data = await res.json();
+        aiAnswerDiv.innerText = data.answer || "No answer yet.";
+      } catch (err) {
+        console.error(err);
+        aiAnswerDiv.innerText = "Error getting AI response.";
+      }
+    }
+
+    // Auto-refresh logs every 5s, summary every 10s
+    setInterval(fetchLogs, 5000);
+    setInterval(fetchSummary, 10000);
+
+    // Initial fetch
+    fetchLogs();
+    fetchSummary();
+  </script>
+</body>
+</html> -->
